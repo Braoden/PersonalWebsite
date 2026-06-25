@@ -28,9 +28,9 @@ export default function HeroBlob({ pointer, reduced }) {
 
     // Scroll progress over the first viewport: blob shrinks & smooths out.
     const progress = MathUtils.clamp(window.scrollY / window.innerHeight, 0, 1)
-    const scale = MathUtils.lerp(1.4, 0.85, progress)
+    const scale = MathUtils.lerp(1.5, 0.5, progress)
     group.current.scale.setScalar(scale)
-    group.current.position.y = progress * 1.2 // drift up & away
+    group.current.position.y = progress * 0.1 // drift up & away
     if (material.current) material.current.distort = 0.4 * (1 - progress * 0.6)
   })
 

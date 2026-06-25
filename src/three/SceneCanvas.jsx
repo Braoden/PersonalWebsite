@@ -69,7 +69,7 @@ export default function SceneCanvas() {
       >
         {/* Accent-tinted lighting for a premium, glassy look (no HDRI fetch). */}
         <ambientLight intensity={0.6} />
-        <directionalLight position={[3, 4, 5]} intensity={1.1} />
+        <directionalLight position={[7, 6, 2]} intensity={1.1} />
         <pointLight position={[-5, -2, 2]} intensity={40} color="#38bdf8" distance={20} />
         <pointLight position={[5, 3, -2]} intensity={30} color="#7dd3fc" distance={20} />
 

@@ -33,7 +33,7 @@ export const nav = [
 
 export const hero = {
   name: 'Braden Chan',
-  tagline: 'Full-Stack Developer & 3D Graphics Tinkerer',
+  tagline: 'Software Developper',
   subtext:
     'I build full-stack apps, physics simulations, and interactive 3D experiences — software that feels alive across both ends of the stack.',
   ctas: [
@@ -53,9 +53,9 @@ export const about = {
 }
 
 export const skills = [
-  { group: 'Languages', items: ['Python', 'Java', 'JavaScript', 'TypeScript', 'C / C++', 'SQL', 'HTML / CSS'] },
-  { group: 'Frameworks & Libraries', items: ['React', 'Next.js', 'Node.js', 'Express', 'Electron', 'Panda3D'] },
-  { group: 'Game & 3D', items: ['Godot', 'Unity', 'Blender'] },
+  { group: 'Languages', items: ['Python', 'Java', 'JavaScript', 'TypeScript', 'HTML / CSS', 'C / C++', 'SQL'] },
+  { group: 'Frameworks & Libraries', items: ['React', 'Next.js', 'Express', 'Electron', 'ClaudeAPI', 'FastAPI'] },
+  { group: 'Game & 3D', items: ['Panda3D', 'Three.js', 'Godot', 'Unity', 'Blender'] },
   { group: 'Tools', items: ['Git', 'GitHub', 'Figma'] },
 ]
 
@@ -133,10 +133,10 @@ export const experience = [
 
 export const education = [
   {
-    role: 'BASc, Computer Science (Co-op)',
-    org: 'McMaster University',
+    role: 'BASc, Honours Computer Science (Co-op)',
+    org: 'McMaster University · Hamilton, ON',
     period: 'Sep 2025 — Present',
-    summary: 'Bachelor of Applied Science · Hamilton, ON · GPA: 3.8 / 4.0.',
+    summary: 'GPA: 3.8 / 4.0 · Dean\'s Honour List',
   },
 ]
 
