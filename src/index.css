@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   Design tokens — kept in sync with tailwind.config.js so colors are usable
+   both as CSS variables and as Tailwind classes (bg-bg, text-accent, ...).
+--------------------------------------------------------------------------- */
+:root {
+  --bg: #0f141a;
+  --surface: #1c242e;
+  --text: #dce3eb;
+  --muted: #8a98a8;
+  --accent: #38bdf8;
+  --accent-2: #7dd3fc;
+
+  --radius: 16px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth; /* fallback if JS/Lenis is unavailable */
+  }
+
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  /* Fluid type scale (clamp) for headings */
+  h1 {
+    font-size: clamp(2.6rem, 7vw, 5.5rem);
+    line-height: 1.02;
+  }
+  h2 {
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    line-height: 1.08;
+  }
+  h3 {
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2b3845;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a4a5a;
+  }
+}
+
+@layer components {
+  .section {
+    @apply relative mx-auto w-full max-w-6xl px-6 py-24 sm:px-8 md:py-32;
+  }
+
+  .eyebrow {
+    @apply mb-3 font-display text-sm font-medium uppercase tracking-[0.2em] text-accent;
+  }
+
+  /* Frosted card surface used by skills / projects / experience */
+  .glass {
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius);
+  }
+
+  .link-underline {
+    @apply relative inline-block;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-accent transition-transform duration-300;
+    transition-timing-function: var(--ease);
+  }
+  .link-underline:hover::after {
+    @apply origin-left scale-x-100;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Custom cursor — hidden on touch via the .has-custom-cursor flag set in JS.
+   On pointer-fine devices we hide the native cursor and draw our own.
+--------------------------------------------------------------------------- */
+.has-custom-cursor,
+.has-custom-cursor a,
+.has-custom-cursor button {
+  cursor: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Respect reduced-motion: kill non-essential transitions/animations.
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
