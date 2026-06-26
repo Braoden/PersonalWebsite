@@ -16,7 +16,7 @@ export default function About() {
       <div className="grid items-start gap-12 md:-mx-8 md:grid-cols-[1fr_1.4fr]">
         {/* Stylized avatar — monogram over an accent gradient (no portrait sourced). */}
         <motion.div {...reveal} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-          <div className="glass relative mx-auto flex aspect-square w-56 items-center justify-center overflow-hidden md:w-full md:max-w-xs">
+          <div className="mt-8 glass relative mx-auto flex aspect-square w-56 items-center justify-center overflow-hidden md:w-full md:max-w-xs">
             <div
               className="absolute inset-0 opacity-80"
               style={{ background: 'radial-gradient(circle at 30% 25%, #38bdf8, transparent 60%), radial-gradient(circle at 75% 80%, #7dd3fc, transparent 55%)' }}
@@ -25,7 +25,6 @@ export default function About() {
               {meta.name.split(' ').map((w) => w[0]).join('')}
             </span>
           </div>
-          <p className="mt-6 text-center text-sm text-accent2 md:text-left">{about.summary}</p>
           <div className="mt-12 flex justify-center">
             <MagneticButton href={meta.resumeUrl} primary download>
               <Download size={16} /> Download Resume

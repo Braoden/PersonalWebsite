@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Float } from '@react-three/drei'
-import { MathUtils, Vector3 } from 'three'
+import { MathUtils, TetrahedronGeometry, Vector3 } from 'three'
 
 // Decorative wireframe accents that bob (Float), spin, parallax to the cursor,
 // AND relocate to a fresh spot each time you scroll into a new section.
@@ -10,6 +10,7 @@ const SHAPES = [
   { geo: 'torus', size: 0.5, speed: 1.6 },
   { geo: 'octahedron', size: 0.55, speed: 1.0 },
   { geo: 'icosahedron', size: 0.45, speed: 1.8 },
+  { geo: 'tetrahedron', size: 0.5, speed: 3.0},
 ]
 
 // Deterministic 0..1 hash so every (shape, section) pair has a stable position
@@ -41,6 +42,7 @@ function Shape({ geo, size }) {
       {geo === 'icosahedron' && <icosahedronGeometry args={[size, 0]} />}
       {geo === 'octahedron' && <octahedronGeometry args={[size, 0]} />}
       {geo === 'torus' && <torusGeometry args={[size, size * 0.35, 12, 32]} />}
+      {geo === 'tetrahedron' && <tetrahedronGeometry args={[size, 0]} />}
       <meshStandardMaterial color="#38bdf8" wireframe transparent opacity={0.45} />
     </mesh>
   )

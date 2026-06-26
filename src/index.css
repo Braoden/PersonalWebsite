@@ -44,6 +44,16 @@
     color: var(--bg);
   }
 
+  /* Branded keyboard focus ring — shown only for keyboard nav (not mouse
+     clicks) via :focus-visible. Follows each element's own border-radius. */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 10px;

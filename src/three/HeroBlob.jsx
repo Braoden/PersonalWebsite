@@ -16,8 +16,9 @@ export default function HeroBlob({ pointer, reduced }) {
   const group = useRef()
   const mesh = useRef()
   const material = useRef()
+  const contactEl = useRef(null)
 
-  useFrame((_, delta) => {
+  useFrame((state, delta) => {
     if (!group.current) return
     const p = pointer.current
 
@@ -26,28 +27,44 @@ export default function HeroBlob({ pointer, reduced }) {
     mesh.current.rotation.x = MathUtils.lerp(mesh.current.rotation.x, -p.y * 0.4, 0.04)
     group.current.rotation.z = MathUtils.lerp(group.current.rotation.z, p.x * 0.15, 0.04)
 
-    // Scroll progress over the first viewport: blob shrinks & smooths out.
-    const progress = MathUtils.clamp(window.scrollY / window.innerHeight, 0, 1)
-    const scale = MathUtils.lerp(1.5, 0.5, progress)
+    // Phase 1 — hero: blob shrinks & smooths over the first viewport of scroll.
+    const heroProgress = MathUtils.clamp(window.scrollY * 2.2 / window.innerHeight, 0, 1)
+
+    // Phase 2 — contact: as the section's top travels up from the viewport
+    // bottom to its middle, the blob drifts left behind the "Get In Touch"
+    // heading and grows back to hero size. Anchoring completion to mid-viewport
+    // (not the very top) means it finishes even though the short final section
+    // never scrolls its heading all the way up. viewport.width keeps the
+    // leftward target on-screen at any aspect.
+    if (!contactEl.current) contactEl.current = document.getElementById('contact')
+    let toContact = 0
+    if (contactEl.current) {
+      const top = contactEl.current.getBoundingClientRect().top
+      toContact = MathUtils.clamp(2 * (1 - top / (window.innerHeight * 0.45)), 0, 1)
+    }
+
+    const scale = MathUtils.lerp(MathUtils.lerp(1.1, 0.4, heroProgress), 1.1, toContact)
     group.current.scale.setScalar(scale)
-    group.current.position.y = progress * 0.1 // drift up & away
-    if (material.current) material.current.distort = 0.4 * (1 - progress * 0.6)
+    group.current.position.x = MathUtils.lerp(0, state.viewport.width * 0.25, toContact)
+    group.current.position.y = MathUtils.lerp(0.05, -0.5, toContact) // settle lower at contact
+    if (material.current)
+      material.current.distort = 0.3 * MathUtils.lerp(1 - heroProgress * 0.6, 1, toContact)
   })
 
   return (
     <Float speed={reduced ? 0 : 1.4} rotationIntensity={0.4} floatIntensity={0.6}>
       <group ref={group} scale={1.4}>
         <mesh ref={mesh}>
-          <icosahedronGeometry args={[1.25, 14]} />
+          <icosahedronGeometry args={[1.5, 15]} />
           <MeshDistortMaterial
             ref={material}
             color="#1f8fd6"
             emissive="#0a4b73"
-            emissiveIntensity={0.35}
-            roughness={0.18}
-            metalness={0.55}
-            distort={0.4}
-            speed={reduced ? 0 : 1.8}
+            emissiveIntensity={0}
+            roughness={0.65}
+            metalness={0.8}
+            distort={0.3}
+            speed={reduced ? 0 : 2}
           />
         </mesh>
       </group>

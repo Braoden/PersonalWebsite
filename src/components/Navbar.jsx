@@ -8,12 +8,33 @@ export default function Navbar() {
   const scrollTo = useScrollTo()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [active, setActive] = useState('')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Highlight the nav link for whichever section is crossing the viewport's
+  // vertical center. ponytail: the middle-10% band is a standard scroll-spy
+  // heuristic; a trailing section too short to reach center may not light up
+  // at full scroll — acceptable for this layout.
+  useEffect(() => {
+    const sections = nav
+      .map((item) => document.getElementById(item.target.slice(1)))
+      .filter(Boolean)
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id)
+        })
+      },
+      { rootMargin: '-45% 0px -45% 0px' },
+    )
+    sections.forEach((el) => io.observe(el))
+    return () => io.disconnect()
   }, [])
 
   const go = (target) => {
@@ -39,16 +60,22 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <ul className="hidden items-center gap-8 md:flex">
-            {nav.map((item) => (
-              <li key={item.target}>
-                <button
-                  onClick={() => go(item.target)}
-                  className="link-underline text-sm text-muted transition-colors hover:text-text"
-                >
-                  {item.label}
-                </button>
-              </li>
-            ))}
+            {nav.map((item) => {
+              const isActive = active === item.target.slice(1)
+              return (
+                <li key={item.target}>
+                  <button
+                    onClick={() => go(item.target)}
+                    aria-current={isActive ? 'true' : undefined}
+                    className={`link-underline text-sm transition-colors ${
+                      isActive ? 'text-accent' : 'text-muted hover:text-text'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              )
+            })}
           </ul>
 
           {/* Mobile toggle */}

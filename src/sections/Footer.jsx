@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-white/5">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-12 sm:flex-row sm:justify-between sm:px-8">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-8 sm:flex-row sm:justify-between sm:px-8">
         <p className="text-sm text-muted">
           © {new Date().getFullYear()} {meta.name}
         </p>
