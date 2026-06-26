@@ -2,15 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ---------------------------------------------------------------------------
-   Design tokens — kept in sync with tailwind.config.js so colors are usable
-   both as CSS variables and as Tailwind classes (bg-bg, text-accent, ...).
---------------------------------------------------------------------------- */
+
 :root {
   --bg: #0f141a;
   --surface: #1c242e;
   --text: #dce3eb;
-  --muted: #8a98a8;
+  --muted: #c8d2dc;
   --accent: #38bdf8;
   --accent-2: #7dd3fc;
 

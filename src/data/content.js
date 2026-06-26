@@ -35,7 +35,7 @@ export const hero = {
   name: 'Braden Chan',
   tagline: 'Software Developper',
   subtext:
-    'I build full-stack apps, physics simulations, and interactive 3D experiences — software that feels alive across both ends of the stack.',
+    'I build things that challenge my skills and push my abilities while making products that feel passionate on all ends of developement',
   ctas: [
     { label: 'About Me', target: '#about', primary: true },
     { label: 'Contact Me', target: '#contact', primary: false },
@@ -45,9 +45,8 @@ export const hero = {
 export const about = {
   heading: 'About',
   paragraphs: [
-    "I'm a Computer Science (Co-op) student at McMaster University who loves building things that challenge my skills and feel alive. I work across the full stack — polished React and Next.js frontends backed by clean Node and Python services — and right now I lead full-stack development for McMaster Advanced Space Systems.",
-    'I believe great software lives across both ends: a responsive, enjoyable interface sitting on top of clean, well-structured code. The small interaction details are what make an app genuinely satisfying to use, so that’s where I spend my time.',
-    'Recent work spans a physics-accurate 3D solar system simulator, a local-first desktop assistant powered by the Claude API, and a tactile habit tracker driven by a hand-built 2D physics engine.',
+    "I'm currently a Computer Science student at McMaster University focusing on learning as much as possible about all types of software development. I regularly work with React, Vite, and Python for full-stack projects, while focusing on balancing responsive UI with clean backend code. I'm drawn to computational challenges—physics simulations, 3D graphics, real-time rendering, and complex algorithms—and enjoy solving performance problems at scale. I'm learning more about cloud deployment (AWS), infrastructure design, and moving projects from local development to production-ready systems.",
+    "Beyond code, I'm obsessed with interaction details: natural animations, immediate UI responsiveness, and interactivity that make software interesting to use. I'm always learning new languages and frameworks by working on projects that stretch my abilities, especially when they're outside my scope."
   ],
   summary: '',
 }
@@ -61,18 +60,18 @@ export const skills = [
 
 export const projects = [
   {
-    title: 'Completion Calendar',
+    title: 'Task Calendar',
     description:
-      'A habit tracker where finishing a task drops a physics-simulated ball into the day you did it. A custom 2D physics engine, jar-filling mechanics with confetti milestones, FLIP zoom animations, and year/month/day views — with zero runtime dependencies.',
-    tech: ['JavaScript', 'HTML5 Canvas', 'Electron', 'Custom Physics'],
+      'A calendar and habit-tracker built for anyone who wants habit tracking to feel tactile, responsive, and interactive instead of a spreadsheet. Features a custom 2D physics engine, various reward mechanics, and many other animations with zero runtime dependencies.',
+    tech: ['JavaScript', 'Node.js', 'Electron', 'Custom Physics'],
     language: 'JavaScript',
-    repo: 'https://github.com/Braoden/CompletionCalendar',
+    repo: 'https://github.com/Braoden/TaskCalendar',
     demo: null,
   },
   {
     title: 'AI Client File System',
     description:
-      "A local-first desktop app that organizes clients into real disk folders and lets you chat with a Claude-powered assistant grounded in each client's files — nothing is uploaded to a third-party cloud. A RESTful API with 13+ endpoints handles profiles, file uploads up to 20 MB, and persistent chat history with a filesystem-as-database design.",
+      "A local-first desktop app that organizes clients into real disk folders and lets you chat with an AI assistant powered by Claude grounded in each client's files and information.",
     tech: ['React', 'Electron', 'Node.js', 'Express', 'Claude API'],
     language: 'JavaScript',
     repo: 'https://github.com/Braoden/ClientFileSystem',
@@ -81,8 +80,8 @@ export const projects = [
   {
     title: 'SolarSym',
     description:
-      'A realistic 3D solar system simulation with physics-based gravity and orbital mechanics computed from real-world values — Newtonian gravitation, velocity-Verlet integration, motion trails, an orbit/pan/zoom camera, time-scale control, and a clickable minimap.',
-    tech: ['Python', 'Panda3D', 'Blender', 'Physics'],
+      'A realistic 3D solar system simulation with physics and mechanics computed from real-world values at a scale. Runs on a custom 3D astrophysics engine and uses 3D models created using satellite images from NASA.',
+    tech: ['Python', 'Panda3D', 'Blender', 'Custom Physics'],
     language: 'Python',
     repo: 'https://github.com/Braoden/SolarSym',
     demo: null,

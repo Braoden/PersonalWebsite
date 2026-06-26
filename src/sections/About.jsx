@@ -13,7 +13,7 @@ const reveal = {
 export default function About() {
   return (
     <SectionWrapper id="about" eyebrow="Who I Am" title={about.heading}>
-      <div className="grid items-start gap-12 md:grid-cols-[1fr_1.4fr]">
+      <div className="grid items-start gap-12 md:-mx-8 md:grid-cols-[1fr_1.4fr]">
         {/* Stylized avatar — monogram over an accent gradient (no portrait sourced). */}
         <motion.div {...reveal} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
           <div className="glass relative mx-auto flex aspect-square w-56 items-center justify-center overflow-hidden md:w-full md:max-w-xs">
@@ -26,14 +26,14 @@ export default function About() {
             </span>
           </div>
           <p className="mt-6 text-center text-sm text-accent2 md:text-left">{about.summary}</p>
-          <div className="mt-6 flex justify-center md:justify-start">
+          <div className="mt-12 flex justify-center">
             <MagneticButton href={meta.resumeUrl} primary download>
               <Download size={16} /> Download Resume
             </MagneticButton>
           </div>
         </motion.div>
 
-        <div className="space-y-5">
+        <div className="flex flex-col gap-5 rounded-2xl bg-surface/6 p-6 backdrop-blur-md">
           {about.paragraphs.map((p, i) => (
             <motion.p
               key={i}
