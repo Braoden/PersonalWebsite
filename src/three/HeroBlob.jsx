@@ -28,7 +28,7 @@ export default function HeroBlob({ pointer, reduced }) {
     group.current.rotation.z = MathUtils.lerp(group.current.rotation.z, p.x * 0.15, 0.04)
 
     // Phase 1 — hero: blob shrinks & smooths over the first viewport of scroll.
-    const heroProgress = MathUtils.clamp(window.scrollY * 2.2 / window.innerHeight, 0, 1)
+    const heroProgress = MathUtils.clamp(window.scrollY * 2.2 / window.innerHeight, 0, 1) //how far have to scroll ~ progress ~ scale speed
 
     // Phase 2 — contact: as the section's top travels up from the viewport
     // bottom to its middle, the blob drifts left behind the "Get In Touch"
@@ -40,15 +40,15 @@ export default function HeroBlob({ pointer, reduced }) {
     let toContact = 0
     if (contactEl.current) {
       const top = contactEl.current.getBoundingClientRect().top
-      toContact = MathUtils.clamp(2 * (1 - top / (window.innerHeight * 0.45)), 0, 1)
+      toContact = MathUtils.clamp(2 * (1 - top / (window.innerHeight * 0.55)), 0, 1) //heroprogress for contact
     }
 
-    const scale = MathUtils.lerp(MathUtils.lerp(1.1, 0.4, heroProgress), 1.1, toContact)
+    const scale = MathUtils.lerp(MathUtils.lerp(1.1, 0.4, heroProgress), 1.1, toContact) //from big to small, small to big
     group.current.scale.setScalar(scale)
-    group.current.position.x = MathUtils.lerp(0, state.viewport.width * 0.25, toContact)
-    group.current.position.y = MathUtils.lerp(0.05, -0.5, toContact) // settle lower at contact
+    group.current.position.x = MathUtils.lerp(0, state.viewport.width * 0.25, toContact) // move left or right
+    group.current.position.y = MathUtils.lerp(0.05, -1.1, toContact) // settle lower at contact
     if (material.current)
-      material.current.distort = 0.3 * MathUtils.lerp(1 - heroProgress * 0.6, 1, toContact)
+      material.current.distort = 0.3 * MathUtils.lerp(1 - heroProgress * 0.6, 1, toContact) //distort / water moving
   })
 
   return (
@@ -60,9 +60,9 @@ export default function HeroBlob({ pointer, reduced }) {
             ref={material}
             color="#1f8fd6"
             emissive="#0a4b73"
-            emissiveIntensity={0}
+            emissiveIntensity={0.05}
             roughness={0.65}
-            metalness={0.8}
+            metalness={0.75}
             distort={0.3}
             speed={reduced ? 0 : 2}
           />
