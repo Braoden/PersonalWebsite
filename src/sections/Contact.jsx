@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { Github, Linkedin, Mail, Phone } from 'lucide-react'
 import { contact, socials } from '../data/content.js'
 import SectionWrapper from '../components/SectionWrapper.jsx'
 
@@ -13,7 +13,7 @@ export default function Contact() {
     <SectionWrapper id="contact" eyebrow="Say Hello" title={contact.heading}>
       <p className="max-w-xl text-base leading-relaxed text-muted pr-24">{contact.blurb}</p>
 
-      <div className="mt-8 mb-28 flex flex-wrap gap-4">
+      <div className="mt-8 mb-28 flex flex-wrap gap-2">
         {links.map(({ icon: Icon, href, label }) => (
           <a
             key={label}

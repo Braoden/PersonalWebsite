@@ -18,6 +18,7 @@ export const socials = {
   github: 'https://github.com/Braoden',
   linkedin: 'https://www.linkedin.com/in/bradenchan/',
   email: 'mailto:bradennchan@gmail.com',
+  phone: '(647) 804-2338'
 }
 
 export const nav = [
